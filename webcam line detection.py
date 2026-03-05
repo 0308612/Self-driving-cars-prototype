@@ -50,7 +50,7 @@ while True:
     image = cv2.blur(image, (5,5))
 
     # Canny
-    image = cv2.Canny(image, 30,200)
+    image = cv2.Canny(image, 200,400)
 
     # Countours (needs canny)
     contours, hierarchy = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
