@@ -44,7 +44,7 @@ while True:
     #Greyscale
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-    # Threshold 120 is threshold, 255 is what we assign if it is below this
+    #Threshold 120 is threshold, 255 is what we assign if it is below this
     _, image = cv2.threshold(image, 150, 255, cv2.THRESH_BINARY)
 
     image = cv2.blur(image, (5,5))
