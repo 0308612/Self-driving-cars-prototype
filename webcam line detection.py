@@ -31,7 +31,7 @@ def id_class_name(class_id, classes):
 def execution_path(filename):
   return os.path.join(os.path.dirname(inspect.getfile(sys._getframe(1))), filename)			
 
-  # Loading model
+# Loading model
 model = cv2.dnn.readNetFromTensorflow(execution_path('models/frozen_inference_graph.pb'),
                                       execution_path('models/ssd_mobilenet_v2_coco_2018_03_29.pbtxt'))
 cam = cv2.VideoCapture(0)
