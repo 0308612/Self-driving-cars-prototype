@@ -49,10 +49,10 @@ while True:
 
     image = cv2.blur(image, (5,5))
 
-    # Canny
+    #Canny
     image = cv2.Canny(image, 200,400)
 
-    # Countours (needs canny)
+    #Countours (needs canny)
     contours, hierarchy = cv2.findContours(image, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE)
     print("Number of Contours Found = " + str(len(contours)))
     image = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
@@ -64,7 +64,7 @@ while True:
     #Resizes and sets the colour mode to BGR
     model.setInput(cv2.dnn.blobFromImage(image, size=(300, 300), swapRB=True))
 
-    # Returns a blob array
+    #Returns a blob array
     output = model.forward()
 
 
@@ -89,7 +89,7 @@ while True:
 
 
     cv2.imshow('image', image)
-# cv2.imwrite("image_box_text.jpg",image)
+#cv2.imwrite("image_box_text.jpg",image)
 
     key = cv2.waitKey(1)
     if key == 27:
