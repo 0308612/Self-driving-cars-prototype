@@ -41,7 +41,7 @@ while True:
     check, frame = cam.read()
     image = cv2.resize(frame, (320,280))
     
-    # Greyscale
+    #Greyscale
     image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     # Threshold 120 is threshold, 255 is what we assign if it is below this
