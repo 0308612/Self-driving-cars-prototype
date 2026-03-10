@@ -12,7 +12,7 @@ if __name__ == '__main__':
             ser.write(b"motor go\n")
         elif a == 2:
             ser.write(b"motor off\n")
-         #decode and read and print to RP console
+        #decode and read and print to RP console
         line = ser.readline().decode('utf-8').rstrip()
         print(line)
         time.sleep(1)
