@@ -59,23 +59,25 @@ while True:
     img = cv2.cvtColor(image, cv2.COLOR_GRAY2BGR)
     cv2.drawContours(img, contours, -1, (255,255,255),2)
 
-    image1 = cv2.imread("image.jpg", cv2.IMREAD_GRAYSCALE)
-    image2 = np.array(image1, dtype=np.uint8)
+    # image1 = cv2.imread("image.jpg", cv2.IMREAD_GRAYSCALE)
+    image1 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+    image2 = np.array(image1, dtype= 'uint8')
 
     lines = cv2.HoughLines(image2, 1, np.pi/180, 200)
-    for r_theta in lines:
-        arr = np.array(r_theta[0], dtype=np.float64)
-        r,theta = arr
-        a = np.cos(theta)
-        b = np.sin(theta)
-        x0 = a*r
-        y0 = b*r
-        x1 = int(x0 + 1000*(-b))
-        y1 = int(y0 + 1000*(a))
-        x2 = int(x0 - 1000*(-b))
-        y2 = int(y0 - 1000*(a))
-        cv2.line(image2, (x1,y1), (x2,y2), (0,0,255), 2)
-
+    print (lines)
+    if lines is not None:
+        for r_theta in lines:
+            arr = np.array(r_theta[0], dtype=np.float64)
+            r,theta = arr
+            a = np.cos(theta)
+            b = np.sin(theta)
+            x0 = a*r
+            y0 = b*r
+            x1 = int(x0 + 1000*(-b))
+            y1 = int(y0 + 1000*(a))
+            x2 = int(x0 - 1000*(-b))
+            y2 = int(y0 - 1000*(a))
+            cv2.line(image2, (x1,y1), (x2,y2), (0,0,255), 2)
     # for i in contours:
     #     M = cv2.moments(i)
     #     if M['m00'] != 0:
