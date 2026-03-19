@@ -77,6 +77,7 @@ while True:
             y1 = int(y0 + 1000*(a))
             x2 = int(x0 - 1000*(-b))
             y2 = int(y0 - 1000*(a))
+            #image2 = cv2.cvtColor(image2, cv2.COLOR_GRAY2BGR)
             cv2.line(image2, (x1,y1), (x2,y2), (0,0,255), 2)
     # for i in contours:
     #     M = cv2.moments(i)
@@ -87,33 +88,33 @@ while True:
     #         cv2.circle(image, (cx,cy), 7, (0,255,0), -1)
     #         cv2.putText(image, 'center', (cx-20,cy-20), cv2.FONT_HERSHEY_SIMPLEX, .5, (0,255,0), 1)
 
-    image_height, image_width, _ = image.shape
+    image_height, image_width = image.shape
 
     #Sets our input as the image, turns it into a blob
     #Resizes and sets the colour mode to BGR
-    model.setInput(cv2.dnn.blobFromImage(image, size=(300, 300), swapRB=True))
+   # model.setInput(cv2.dnn.blobFromImage(image, size=(300, 300), swapRB=True))
 
-    #Returns a blob array
-    output = model.forward()
+    # #Returns a blob array
+    # output = model.forward()
 
 
 
-    for detection in output[0, 0, :, :]:
-        confidence = detection[2]
-        if confidence > .5: #This is our confidence threshold
-            class_id = detection[1] #This is the ID of what it thinks it is
-            class_name=id_class_name(class_id,classNames) #Returning the name from Dictionary
-            print(str(str(class_id) + " " + str(detection[2])  + " " + class_name))
+    # for detection in output[0, 0, :, :]:
+    #     confidence = detection[2]
+    #     if confidence > .5: #This is our confidence threshold
+    #         class_id = detection[1] #This is the ID of what it thinks it is
+    #         class_name=id_class_name(class_id,classNames) #Returning the name from Dictionary
+    #         print(str(str(class_id) + " " + str(detection[2])  + " " + class_name))
             
-            #Draw the bounding box, scaled to size of the image
-            box_x = detection[3] * image_width
-            box_y = detection[4] * image_height
-            box_width = detection[5] * image_width
-            box_height = detection[6] * image_height
-            cv2.rectangle(image, (int(box_x), int(box_y)), (int(box_width), int(box_height)), (23, 230, 210), thickness=2)
+    #         #Draw the bounding box, scaled to size of the image
+    #         box_x = detection[3] * image_width
+    #         box_y = detection[4] * image_height
+    #         box_width = detection[5] * image_width
+    #         box_height = detection[6] * image_height
+    #         cv2.rectangle(image, (int(box_x), int(box_y)), (int(box_width), int(box_height)), (23, 230, 210), thickness=2)
             
-            #Put some text on the bounding box
-            cv2.putText(image,class_name ,(int(box_x), int(box_y+.0001*image_height)),cv2.FONT_HERSHEY_SIMPLEX,(.004*image_width),(0, 0, 255), thickness=2)
+    #         #Put some text on the bounding box
+    #         cv2.putText(image,class_name ,(int(box_x), int(box_y+.0001*image_height)),cv2.FONT_HERSHEY_SIMPLEX,(.004*image_width),(0, 0, 255), thickness=2)
 
 
 
